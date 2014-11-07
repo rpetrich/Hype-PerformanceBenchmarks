@@ -102,25 +102,25 @@ var gCurrentTestIteration = 0;
 // 
 
 var kTestsMatrix = [
-					{ "mode" : "javascript", "property" : "topleft", "shouldForce3D" : true, "opaque" : true },
-					{ "mode" : "javascript", "property" : "topleft", "shouldForce3D" : false, "opaque" : true },
-					{ "mode" : "javascript", "property" : "translate", "shouldForce3D" : true, "opaque" : true },
+					{ "mode" : "javascript", "property" : "topleft"  , "shouldForce3D" : true , "opaque" : true },
+					{ "mode" : "javascript", "property" : "topleft"  , "shouldForce3D" : false, "opaque" : true },
+					{ "mode" : "javascript", "property" : "translate", "shouldForce3D" : true , "opaque" : true },
 					{ "mode" : "javascript", "property" : "translate", "shouldForce3D" : false, "opaque" : true },
-					{ "mode" : "transition", "property" : "topleft", "shouldForce3D" : true, "opaque" : true },
-					{ "mode" : "transition", "property" : "topleft", "shouldForce3D" : false, "opaque" : true },
+					{ "mode" : "transition", "property" : "topleft"  , "shouldForce3D" : true , "opaque" : true },
+					{ "mode" : "transition", "property" : "topleft"  , "shouldForce3D" : false, "opaque" : true },
 					{ "mode" : "transition", "property" : "translate", "shouldForce3D" : false, "opaque" : true },
-					{ "mode" : "transition", "property" : "translate", "shouldForce3D" : true, "opaque" : true },
-					{ "mode" : "javascript", "property" : "topleft", "shouldForce3D" : true, "opaque" : false },
-					{ "mode" : "javascript", "property" : "topleft", "shouldForce3D" : false, "opaque" : false },
-					{ "mode" : "javascript", "property" : "translate", "shouldForce3D" : true, "opaque" : false },
+					{ "mode" : "transition", "property" : "translate", "shouldForce3D" : true , "opaque" : true },
+					{ "mode" : "javascript", "property" : "topleft"  , "shouldForce3D" : true , "opaque" : false },
+					{ "mode" : "javascript", "property" : "topleft"  , "shouldForce3D" : false, "opaque" : false },
+					{ "mode" : "javascript", "property" : "translate", "shouldForce3D" : true , "opaque" : false },
 					{ "mode" : "javascript", "property" : "translate", "shouldForce3D" : false, "opaque" : false },
-					{ "mode" : "transition", "property" : "topleft", "shouldForce3D" : true, "opaque" : false },
-					{ "mode" : "transition", "property" : "topleft", "shouldForce3D" : false, "opaque" : false },
+					{ "mode" : "transition", "property" : "topleft"  , "shouldForce3D" : true , "opaque" : false },
+					{ "mode" : "transition", "property" : "topleft"  , "shouldForce3D" : false, "opaque" : false },
 					{ "mode" : "transition", "property" : "translate", "shouldForce3D" : false, "opaque" : false },
-					{ "mode" : "transition", "property" : "translate", "shouldForce3D" : true, "opaque" : false },
+					{ "mode" : "transition", "property" : "translate", "shouldForce3D" : true , "opaque" : false },
 
 				];
-
+var statusbar = "";
 function beginTesting() {
 	runNextTest();
 }
@@ -129,9 +129,15 @@ function runNextTest() {
 	var testInfo = kTestsMatrix[gCurrentTestIndex];
 
 	if(gCurrentTestIndex < kTestsMatrix.length) {
-		document.getElementById("output").innerHTML += "" + gCurrentTestIndex + " ";
+		document.getElementById("output").innerHTML = 
+            + ((100*gCurrentTestIndex)/kTestsMatrix.length) + "%"
+            + " (" + gCurrentTestIndex + "/" + kTestsMatrix.length + ")"
+            + " --- 3D: " + (kTestsMatrix[gCurrentTestIndex].shouldForce3D ? "Yes" : "No")
+            + " Opaque: " + (kTestsMatrix[gCurrentTestIndex].opaque        ? "Yes" : "No")
 		runTest(testInfo.mode, testInfo.property, testInfo.shouldForce3D, testInfo.opaque);
 	}
+    else
+		document.getElementById("output").innerHTML = "Done";
 
 	if(gCurrentTestIteration + 1 < kMaxTestIterations) {
 		gCurrentTestIteration += 1;
@@ -166,6 +172,7 @@ function runTest(mode, property, shouldForce3D, opaque) {
 
 function endTest(frames, elapsedTime) {
 	//document.getElementById("output").innerHTML += "" +  frames + " / " + elapsedTime + " = " + (frames/elapsedTime) + "<br>";
+console.log( "" +  frames + " / " + elapsedTime + " = " + (frames/elapsedTime) );
 	runNextTest();
 }
 
