@@ -222,10 +222,33 @@ function createBoxes() {
 	var containerElement = document.getElementById("container");
 	
 	gBoxes = Array();
+	var aColors = [
+		 "#000"
+		,"#700"
+		,"#070"
+		,"#770"
+		,"#007"
+		,"#707"
+		,"#077"
+		,"#777"
+		,"#F00"
+		,"#0F0"
+		,"#FF0"
+		,"#00F"
+		,"#F0F"
+		,"#0FF"
+		,"#FFF"
+	];
+	var n = kTotalBoxCount - aColors.length;
 	for(var i = 0; i < kTotalBoxCount; i++) {
 		var boxElement = document.createElement("div");
 		boxElement.style.border = "1px solid #333";
-		boxElement.style.backgroundColor = "#acf";
+		if( i >= n )
+			boxElement.style.backgroundColor = aColors[i-n];
+//		if(i<aColors.length)
+//			boxElement.style.backgroundColor = aColors[i];
+		else
+			boxElement.style.backgroundColor = "#acf";
 		boxElement.style.width = "" + kBoxWidth + "px";
 		boxElement.style.height = "" + kBoxHeight + "px";
 		if(gTestProperty == "translate") {
