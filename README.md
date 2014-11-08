@@ -9,7 +9,8 @@ Enhancements:
  - Added colored rectangles on top if transparent
  - Added results to both webpage and console
 
-Note: Original version was created by Jonathan Deutsch <jonathan@tumult.com>
+Note: Original version was created by Jonathan Deutsch 
+https://github.com/tumult/PerformanceBenchmarks
 
 Screenshots
 ===========
