@@ -129,11 +129,15 @@ function runNextTest() {
 	var testInfo = kTestsMatrix[gCurrentTestIndex];
 
 	if(gCurrentTestIndex < kTestsMatrix.length) {
+		var a = kTestsMatrix[gCurrentTestIndex];
 		document.getElementById("output").innerHTML = 
-            + ((100*gCurrentTestIndex)/kTestsMatrix.length) + "%"
-            + " (" + gCurrentTestIndex + "/" + kTestsMatrix.length + ")"
-            + " --- 3D: " + (kTestsMatrix[gCurrentTestIndex].shouldForce3D ? "Yes" : "No")
-            + " Opaque: " + (kTestsMatrix[gCurrentTestIndex].opaque        ? "Yes" : "No")
+			+ ((100*gCurrentTestIndex)/kTestsMatrix.length) + "%"
+			+ " (" + gCurrentTestIndex + "/" + kTestsMatrix.length + ")"
+			+ " --- 3D: "      + (a.shouldForce3D ? "Yes" : "No" )
+			+ " Transparent: " + (a.opaque        ? "No " : "Yes")
+			+ " --- Mode: "    +  a.mode
+			+ " --- Action: "  +  a.property
+			;
 		runTest(testInfo.mode, testInfo.property, testInfo.shouldForce3D, testInfo.opaque);
 	}
     else
@@ -171,8 +175,6 @@ function runTest(mode, property, shouldForce3D, opaque) {
 }
 
 function endTest(frames, elapsedTime) {
-	//document.getElementById("output").innerHTML += "" +  frames + " / " + elapsedTime + " = " + (frames/elapsedTime) + "<br>";
-console.log( "" +  frames + " / " + elapsedTime + " = " + (frames/elapsedTime) );
 	runNextTest();
 }
 
@@ -220,7 +222,6 @@ function createBoxes() {
 	var containerElement = document.getElementById("container");
 	
 	gBoxes = Array();
-
 	for(var i = 0; i < kTotalBoxCount; i++) {
 		var boxElement = document.createElement("div");
 		boxElement.style.border = "1px solid #333";
@@ -231,6 +232,7 @@ function createBoxes() {
 			boxElement.style.left = "0px";
 			boxElement.style.top = "0px";
 		}
+
 		if(gTestMode == "transition") {
 			if(gTestProperty == "topleft") {
 				boxElement.style[kTransitionName] = "left " + kTestDuration + "s linear, top " + kTestDuration + "s linear";
@@ -248,10 +250,10 @@ function createBoxes() {
 		}
 		boxElement.id = "box-" + i;
 		
-		var startX = Math.floor(Math.random() * (kContainerWidth - kBoxWidth));
+		var startX = Math.floor(Math.random() * (kContainerWidth  - kBoxWidth ));
 		var startY = Math.floor(Math.random() * (kContainerHeight - kBoxHeight));
-		var endX = Math.floor(Math.random() * (kContainerWidth - kBoxWidth));
-		var endY = Math.floor(Math.random() * (kContainerHeight - kBoxHeight));
+		var endX   = Math.floor(Math.random() * (kContainerWidth  - kBoxWidth ));
+		var endY   = Math.floor(Math.random() * (kContainerHeight - kBoxHeight));
 
 		gBoxes.push({"startX" : startX, "startY" : startY, "endX" : endX, "endY" : endY , "element" : boxElement});
 
@@ -266,8 +268,8 @@ function createBoxes() {
 	<body onload = "beginTesting()">
 	
 		<div id = "container"></div>
-
-		<div id = "output"></div>
+		<div id = "output" ></div>
+		<div id = "results"></div>
 
 	</body>
 <html>
