@@ -9,3 +9,9 @@ Enhancements:
  - Added colored rectangles on top if transparent
  - Added results to both webpage and console
 
+Screenshots
+===========
+
+* ![Test 0](https://raw.githubusercontent.com/Michaelangel007/PerformanceBenchmarks/master/screenshot_test0.png)
+* ![Done](https://raw.githubusercontent.com/Michaelangel007/PerformanceBenchmarks/master/screenshot_done.png)
+
