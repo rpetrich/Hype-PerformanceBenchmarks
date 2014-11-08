@@ -118,7 +118,6 @@ var kTestsMatrix = [
 					{ "mode" : "transition", "property" : "topleft"  , "shouldForce3D" : false, "opaque" : false },
 					{ "mode" : "transition", "property" : "translate", "shouldForce3D" : false, "opaque" : false },
 					{ "mode" : "transition", "property" : "translate", "shouldForce3D" : true , "opaque" : false },
-
 				];
 var statusbar = "";
 function beginTesting() {
@@ -141,13 +140,13 @@ function runNextTest() {
 		runTest(testInfo.mode, testInfo.property, testInfo.shouldForce3D, testInfo.opaque);
 	}
     else
-		document.getElementById("output").innerHTML = "Done";
+		document.getElementById("output").innerHTML = "Done!";
 
 	if(gCurrentTestIteration + 1 < kMaxTestIterations) {
 		gCurrentTestIteration += 1;
 	} else {
 		gCurrentTestIteration = 0;
-		gCurrentTestIndex += 1;			
+		gCurrentTestIndex += 1;
 	}
 }
 
@@ -207,7 +206,7 @@ function heartbeat() {
 	if(currentTime < kTestDuration) {
 		window.requestAnimFrame(heartbeat);
 	} else {
-		endTest(gFrameCount, currentTime);	
+		endTest(gFrameCount, currentTime);
 	}
 }
 
