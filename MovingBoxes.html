@@ -175,6 +175,12 @@ function runTest(mode, property, shouldForce3D, opaque) {
 }
 
 function endTest(frames, elapsedTime) {
+	if( frames !== undefined ) // kickoffTransition() calls us as a heartbeat
+	{
+		var result = "["+(gCurrentTestIndex-1)+"]" + " #" + frames + " frames / " + elapsedTime.toFixed(3) + "s = " + (frames/elapsedTime).toFixed(3) + " fps";
+		document.getElementById("results").innerHTML += result + "<br>";
+		console.log( result );
+	}
 	runNextTest();
 }
 
