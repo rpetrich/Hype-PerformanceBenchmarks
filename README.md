@@ -1,5 +1,5 @@
-PerformanceBenchmarks
-=====================
+Javascript Transform Benchmark
+==============================
 
 Benchmarks testing performance of HTML5, CSS3, and JavaScript "transform"
 
