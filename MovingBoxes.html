@@ -243,12 +243,17 @@ function createBoxes() {
 	for(var i = 0; i < kTotalBoxCount; i++) {
 		var boxElement = document.createElement("div");
 		boxElement.style.border = "1px solid #333";
-		if( i >= n )
-			boxElement.style.backgroundColor = aColors[i-n];
-//		if(i<aColors.length)
-//			boxElement.style.backgroundColor = aColors[i];
-		else
-			boxElement.style.backgroundColor = "#acf";
+		boxElement.style.backgroundColor = "#acf";
+
+		if(gOpaque == false) // if transparent, show bottom rects with color
+		{
+			if(i<aColors.length)
+				boxElement.style.backgroundColor = aColors[i];
+		} else { // if opaque, show rects on top with color
+			if( i >= n )
+				boxElement.style.backgroundColor = aColors[i-n];
+		}
+
 		boxElement.style.width = "" + kBoxWidth + "px";
 		boxElement.style.height = "" + kBoxHeight + "px";
 		if(gTestProperty == "translate") {
