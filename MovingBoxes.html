@@ -221,7 +221,9 @@ function setElementPosition(element, xPos, yPos) {
 		} else {
 			element.style[kTransformName] = "translateX(" + xPos + "px) translateY(" + yPos + "px)";
 		}
-	} 
+	} else if (gTestProperty == "translate3d") {
+		element.style[kTransformName] = "translate3d(" + xPos + "px," + yPos + "px,0)";
+	}
 }
 
 function createBoxes() {
